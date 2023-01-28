@@ -9,5 +9,5 @@ public class AlcholSO : ScriptableObject
    
     [SerializeField] private GameObject _alcPref;
 
-    public int amountOfHealing;
+    public float amountOfHealing;
 }

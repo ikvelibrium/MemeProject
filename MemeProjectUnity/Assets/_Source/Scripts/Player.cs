@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private int _hp;
-    public static int HP;
+    [SerializeField] private float _hp;
+    [SerializeField] private Slider _hpSlider;
+    public static float HP;
+    
+
     void Start()
     {
         HP = _hp;
@@ -14,7 +18,7 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-        
+        _hpSlider.value = HP;
     }
 
 
