@@ -7,19 +7,52 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float _hp;
     [SerializeField] private Slider _hpSlider;
-    public static float HP;
+    [SerializeField] private float _reloadTime;
+    [SerializeField] private GameObject _bulletPref;
+    [SerializeField] private Transform _shootPoint;
+    private float _actualReloadTime;
+   
+    
+    
     
 
     void Start()
     {
-        HP = _hp;
+        _actualReloadTime = _reloadTime;
     }
 
     
     void Update()
     {
-        _hpSlider.value = HP;
+        _hpSlider.value = _hp;
+        _reloadTime -= Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Shoot();
+        }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        
+    }
+    public void GetDamage(float damage)
+    {
+        _hp -= damage;
+        if (_hp <= 0)
+        {
+            Die();
+        }
+    }
+    public void Heal(float heal)
+    {
+        _hp += heal;
+    }
+    void Die()
+    {
 
-
+    }
+    void Shoot()
+    {
+        Instantiate(_bulletPref, _shootPoint);
+    }
 }

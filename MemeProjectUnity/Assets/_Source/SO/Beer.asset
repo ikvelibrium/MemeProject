@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Beer
   m_EditorClassIdentifier: 
   _alcPref: {fileID: 0}
-  amountOfHealing: 0
+  amountOfHealing: 5

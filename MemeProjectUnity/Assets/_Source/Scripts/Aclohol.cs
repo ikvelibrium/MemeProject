@@ -6,6 +6,8 @@ public class Aclohol : MonoBehaviour
 {
     [SerializeField] private AlcholSO  _alcSO;
     [SerializeField] private GameObject PressButtonUI;
+    [SerializeField]  Player player;
+
     private bool _kostl = false;
 
 
@@ -22,7 +24,9 @@ public class Aclohol : MonoBehaviour
         if ( other.gameObject.layer == 7 && _kostl == true)
         {
             PressButtonUI.SetActive(false);
-            Player.HP += _alcSO.amountOfHealing;
+            // Player.HP += _alcSO.amountOfHealing;
+
+            player.Heal(_alcSO.amountOfHealing);
             _kostl = false;
             Destroy(gameObject);
         }
