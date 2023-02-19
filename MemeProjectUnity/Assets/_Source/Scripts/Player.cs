@@ -53,6 +53,6 @@ public class Player : MonoBehaviour
     }
     void Shoot()
     {
-        Instantiate(_bulletPref, _shootPoint);
+        Instantiate(_bulletPref, _shootPoint.position, _shootPoint.rotation);
     }
 }

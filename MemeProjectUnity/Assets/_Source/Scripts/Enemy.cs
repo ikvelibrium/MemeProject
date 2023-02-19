@@ -44,6 +44,7 @@ public class Enemy : MonoBehaviour
     }
     public void GetDamage(float damage)
     {
+        Debug.Log("Enemy get damaged");
         _hp -= damage;
         if (_hp <= 0)
         {
