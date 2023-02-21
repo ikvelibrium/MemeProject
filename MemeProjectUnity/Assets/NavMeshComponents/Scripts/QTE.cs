@@ -10,7 +10,7 @@ public class QTE : MonoBehaviour
     [SerializeField] private float _time;
     [SerializeField] private Text _text; 
     [SerializeField] private Slider _pressedTimesSlider;
-    [SerializeField] private float _timesNeededTopres;
+    [SerializeField] private float _howMuchTimesToPress;
     private float _timesPressed = 0;
     private float _actualTimeLeft;
     private bool _inAction = false;
@@ -18,15 +18,16 @@ public class QTE : MonoBehaviour
     {
         _actualTimeLeft = _time;
         _text.text = "Press F to win";
-        _timesNeededTopres = 0;
+        _timesPressed = 0;
+        _pressedTimesSlider.maxValue = _howMuchTimesToPress;
     }
     void Update()
     {
-
-        _pressedTimesSlider.value = _timesNeededTopres;
+        Debug.Log(_timesPressed);
+        _pressedTimesSlider.value = _timesPressed;
         if (Input.GetKeyDown(KeyCode.F))
         {
-            _timesNeededTopres++;
+            _timesPressed++;
         }
         
         if (_actualTimeLeft < 0)
@@ -34,17 +35,17 @@ public class QTE : MonoBehaviour
             _text.text = "Lol you failed";
             _QTEPanel.SetActive(false);
             _text.text = "Press F to win";
-            _timesNeededTopres = 0;
+            _timesPressed = 0;
             _actualTimeLeft = _time;
         }
-        if (_inAction == true && _timesNeededTopres > 0)
+        if (_inAction == true && _timesPressed > 0)
         {
             _actualTimeLeft -= Time.deltaTime;
         }
-        if (_timesNeededTopres <= 10)
+        if (_timesPressed <= _howMuchTimesToPress)
         {
             _text.text = "Win";
-            _QTEPanel.SetActive(false);
+            //_QTEPanel.SetActive(false);
             _text.text = "Press F to win";
             _timesPressed = 0;
             _actualTimeLeft = _time;
@@ -54,6 +55,7 @@ public class QTE : MonoBehaviour
     {
         Debug.Log("dsasdasd");
         _QTEPanel.SetActive(true);
+        _inAction = true;
     }
     private void OnTriggerExit(Collider other)
     {

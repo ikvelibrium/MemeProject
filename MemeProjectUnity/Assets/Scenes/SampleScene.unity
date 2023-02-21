@@ -2673,7 +2673,7 @@ MonoBehaviour:
   _time: 60
   _text: {fileID: 1714243024}
   _pressedTimesSlider: {fileID: 1820908747}
-  _timesNeededTopres: 10
+  _howMuchTimesToPress: 10
 --- !u!65 &1501736733
 BoxCollider:
   m_ObjectHideFlags: 0
