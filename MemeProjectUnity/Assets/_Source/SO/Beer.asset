@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df48ad09ee969f546ab72db823462119, type: 3}
   m_Name: Beer
   m_EditorClassIdentifier: 
-  _alcPref: {fileID: 0}
+  _alcPref: {fileID: 919132149155446097, guid: 6893142d73cce454099c2e694436b24f, type: 3}
   amountOfHealing: 5

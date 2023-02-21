@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float _reloadTime;
     [SerializeField] private GameObject _bulletPref;
     [SerializeField] private Transform _shootPoint;
+    [SerializeField] TaskTrecker taskTrecker;
+
+
     private float _actualReloadTime;
    
     
@@ -28,7 +31,9 @@ public class Player : MonoBehaviour
         _reloadTime -= Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            
             Shoot();
+            
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -46,13 +51,15 @@ public class Player : MonoBehaviour
     public void Heal(float heal)
     {
         _hp += heal;
+        taskTrecker.BeerColected();
     }
     void Die()
     {
 
     }
-    void Shoot()
+    public void Shoot() 
     {
-        Instantiate(_bulletPref, _shootPoint.position, _shootPoint.rotation);
+        Instantiate(_bulletPref, _shootPoint.position, _shootPoint.rotation); 
+        
     }
 }

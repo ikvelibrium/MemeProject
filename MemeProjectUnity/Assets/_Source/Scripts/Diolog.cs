@@ -11,20 +11,23 @@ public class Diolog : MonoBehaviour
     [SerializeField] private List<string> _phrases = new List<string>();
     [SerializeField] private GameObject _diologWindow;
     [SerializeField] private TMP_Text _text;
-    int counter = 0;
+    public int Counter = 0;
     bool kostl = true;
+    private bool _isMovingForward = true;
+   
     
+
     private void Update()
     {
         Speak();
-        Debug.Log(counter);
+        
     }
 
     private void OnTriggerStay(Collider other)
     {
         if ( other.gameObject.layer == 7)
         {
-            Debug.Log("asdasdasd");
+            
             _diologWindow.SetActive(true);
             kostl = true;
             
@@ -37,24 +40,32 @@ public class Diolog : MonoBehaviour
         _diologWindow.SetActive(false);
         kostl = false;
     }
+    public void ChangePhrases()
+    {
+        _isMovingForward = true;
+       
+    }
 
     void Speak()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X) && _isMovingForward == true)
         {
-            counter++;
+            Counter++;
+            _isMovingForward = false;
         }
 
         if (kostl == true)
         {
-            if (counter < _phrases.Count)
+            if (Counter < _phrases.Count)
             {
-                _text.text = _phrases[counter];
+                _text.text = _phrases[Counter];
+
             }
-            if (counter > _phrases.Count)
+            if (Counter > _phrases.Count)
             {
                 _diologWindow.SetActive(false);
-                counter = _phrases.Count - 1;
+                Counter = _phrases.Count - 1;
+                _isMovingForward = false;
             }
             
         }

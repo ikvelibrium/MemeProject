@@ -31,6 +31,7 @@ public class Aclohol : MonoBehaviour
             Destroy(gameObject);
         }
     }
+   
     private void OnTriggerExit(Collider other)
     {
         PressButtonUI.SetActive(false);

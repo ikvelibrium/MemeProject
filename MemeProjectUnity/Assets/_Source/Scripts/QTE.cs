@@ -1,6 +1,6 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
-
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,9 +11,11 @@ public class QTE : MonoBehaviour
     [SerializeField] private Text _text; 
     [SerializeField] private Slider _pressedTimesSlider;
     [SerializeField] private float _howMuchTimesToPress;
+    [SerializeField] private TMP_Text _tmpText;
     private float _timesPressed = 0;
     private float _actualTimeLeft;
     private bool _inAction = false;
+    public bool FridgeGotKicked = false;
     private void Start()
     {
         _actualTimeLeft = _time;
@@ -23,6 +25,7 @@ public class QTE : MonoBehaviour
     }
     void Update()
     {
+        _tmpText.text = $"Осталось {_actualTimeLeft} секунд";
         Debug.Log(_timesPressed);
         _pressedTimesSlider.value = _timesPressed;
         if (Input.GetKeyDown(KeyCode.F))
@@ -42,13 +45,18 @@ public class QTE : MonoBehaviour
         {
             _actualTimeLeft -= Time.deltaTime;
         }
-        if (_timesPressed <= _howMuchTimesToPress)
+        if (_timesPressed >= _howMuchTimesToPress)
         {
             _text.text = "Win";
-            //_QTEPanel.SetActive(false);
-            _text.text = "Press F to win";
-            _timesPressed = 0;
-            _actualTimeLeft = _time;
+            
+            
+            _actualTimeLeft = 3;
+            _tmpText.gameObject.SetActive(false);
+            FridgeGotKicked = true;
+            if (_actualTimeLeft < 0)
+            {
+                _QTEPanel.SetActive(false);
+            }
         }
     }
     private void OnTriggerEnter(Collider other)
